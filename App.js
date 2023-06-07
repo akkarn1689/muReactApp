@@ -9,12 +9,22 @@ const heading = (
 );
 
 // React Component
-// - Functional Component - New 
+// - Functional Component - New
+// Name of Component starts with  capital letter - it is not mandatory 
 
-const HeaderComponent = () => {
-    return <h1> My React Functional Component</h1>
+const HeaderComponent1 = () => {
+    return (
+        <h1>
+            My React Functional Component
+        </h1>
+    );
 }
 
+const HeaderComponent2 = () => (
+        <h1>
+            My React Functional Component
+        </h1>
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
