@@ -2,33 +2,32 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom/client";
 
 
-const heading = (
+const Title = () => (
     <h1 id="title" key="2">
         Heading 2
     </h1>
 );
 
-// React Component
-// - Functional Component - New
-// Name of Component starts with  capital letter - it is not mandatory 
 
-const HeaderComponent1 = () => {
+
+const HeaderComponent = () => {
     return (
-        <h1>
-            My React Functional Component
-        </h1>
+        <div>
+            {Title()}
+            <h2>My React Functional Component</h2>
+            <h2> This is a h2 tag</h2>
+        </div>
     );
 }
 
-const HeaderComponent2 = () => (
-        <h1>
-            My React Functional Component
-        </h1>
-);
+
+
+
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 // passing a react element inside the root
 
 //async defer
-root.render(heading);
+root.render(<HeaderComponent />);
