@@ -1,11 +1,9 @@
 // import { restaurantList } from "../constants";
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 
-// what is state?
-// what is React Hooks? - function
-// what is useState?
 
 function filterData(searchText, allRestaurants) {
     const filterData = allRestaurants.filter((restaurant) =>
@@ -79,8 +77,15 @@ const Body = () => {
                 {/* if search query is not found/ found */}
                 {
                     (filteredRestaurants?.length === 0) ? <h1>No Restaurant match your Filter</h1> :
-                        filteredRestaurants.map(restaurant => {
-                            return <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
+                        filteredRestaurants.map((restaurant) => {
+                            return (
+                                <Link
+                                    to={"/restaurant/" + restaurant.data.id}
+                                    key={restaurant.data.id}
+                                >
+                                    <RestaurantCard {...restaurant.data} />
+                                </Link>
+                            )
                         })
                 }
             </div>

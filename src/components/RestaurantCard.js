@@ -10,6 +10,7 @@ export const RestaurantCard = ({ name, cuisines, avgRating, cloudinaryImageId })
                 src={
                     IMG_CDN_URL + cloudinaryImageId
                 }
+                alt={name}
             />
             <h2>{name}</h2>
             <h3>{cuisines?.join(", ")}</h3>
