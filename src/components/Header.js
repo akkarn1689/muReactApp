@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import Logo from "../images/logo.png";
+
 
 const Title = () => (
     <a href="/">
         <img
             className="logo"
             alt="logo"
-            src="https://yt3.ggpht.com/ytc/AMLnZu_EC-ECXAxRAixWGEfMsE1rdSoetBHyxmLNdtCB=s900-c-k-c0x00ffffff-no-rj"
+            src={Logo}
         />
+        <figcaption>SpeedyDine</figcaption>
     </a>
 );
 
