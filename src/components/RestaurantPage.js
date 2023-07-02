@@ -6,12 +6,15 @@ import RestaurantItemCategory from "./RestaurantItemCategory";
 import RestaurantNestedItemCategory from "./RestaurantNestedItemCategory";
 import Shimmer from "./Shimmer";
 
-import { IMG_CDN_URL } from "../constants";
+import { IMG_CDN_URL, FETCH_INFO_MENU_URL } from "../constants";
+
+// import useRestaurant from "../utils/useRestaurant";
 
 const RestaurantPage = () => {
     const params = useParams();
     // console.log(params);
     const { id } = params;
+
 
     const [restaurant, setRestaurant] = useState(null);
     const [restaurantInfo, setRestaurantInfo] = useState({});
@@ -22,11 +25,7 @@ const RestaurantPage = () => {
     }, [])
 
     async function getRestaurantInfo() {
-        const response = await fetch(
-            "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=26.8041502&lng=83.34821459999999&restaurantId="
-            + id +
-            "&submitAction=ENTER"
-        );
+        const response = await fetch(FETCH_INFO_MENU_URL + id);
         const res_data = await response.json();
         const menuItemList = res_data?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
         const itemCategory = "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory";
@@ -45,9 +44,9 @@ const RestaurantPage = () => {
         setRestaurantInfo(res_data?.data?.cards[0]?.card?.card?.info);
         setRestaurantMenu(menu?.filter(value => value !== undefined));
 
-        setRestaurant({ restaurantInfo, restaurantMenu });
+        setRestaurant([ restaurantInfo, restaurantMenu ]);
 
-        // console.log(restaurantMenu);
+        console.log(restaurant);
         // console.log(restaurantInfo);
         // console.log(restaurantMenu);
     }

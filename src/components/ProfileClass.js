@@ -11,7 +11,7 @@ class Profile extends React.Component {
 
             },
         };
-        console.log("child-constructor "+this.props.name);
+        // console.log("child-constructor "+this.props.name);
     }
 
     // research about when and why should we use async for componentDidMount
@@ -32,24 +32,24 @@ class Profile extends React.Component {
         // },1000);
 
 
-        console.log("child-componentDidMount "+this.props.name);
+        // console.log("child-componentDidMount "+this.props.name);
     }
 
     componentDidUpdate(){
         // this will be called after every re-render
         // if there is a need to keep dependencies, we have to put if-else condition inside 'componentDidUpdate'
-        console.log("Component Did Update");
+        // console.log("Component Did Update");
     }
 
     componentWillUnmount(){
         // this will be called when we go to any other page
         clearInterval(this.timer);
 
-        console.log("Component Will Unmount");
+        // console.log("Component Will Unmount");
     }
 
     render() {
-        console.log("child-render "+this.props.name);
+        // console.log("child-render "+this.props.name);
         return (
             <div>
                 <h2>Profile Class Component</h2>

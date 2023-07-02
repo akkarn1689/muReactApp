@@ -5,13 +5,10 @@ import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 
 
-function filterData(searchText, allRestaurants) {
-    const filterData = allRestaurants.filter((restaurant) =>
-        restaurant?.data?.name?.toLowerCase().includes(searchText.toLowerCase())
-    );
+//
+import { filterData } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 
-    return filterData;
-}
 
 
 const Body = () => {
@@ -37,7 +34,11 @@ const Body = () => {
         setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     }
 
+    const  isOnline = useOnline();
 
+    if(!isOnline){
+        return <h1>🔴 Offline, please check your internet connection!!!</h1>;
+    }
 
     // conditional rendering
     // if restaurant is empty => Shimer UI
@@ -45,8 +46,6 @@ const Body = () => {
 
     // not render component (Early return)
     if (!allRestaurants) return null;
-
-
 
     return (allRestaurants?.length === 0) ? <Shimmer /> : (
         <>

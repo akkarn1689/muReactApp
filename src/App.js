@@ -1,5 +1,5 @@
 import bodyParser from "body-parser";
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
@@ -7,11 +7,18 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import Footer from "./components/Footer";
-import About from "./components/About";
+// import About from "./components/About";
 import Contact from "./components/Contact";
 import RestaurantPage from "./components/RestaurantPage";
 import Error from "./components/Error";
 import Profile from "./components/Profile";
+import Shimmer from "./components/Shimmer";
+// import Instamart from "./components/Instamart";
+
+
+// this is a promise
+const Instamart = lazy(() => import("./components/Instamart"));
+const About = lazy(() => import("./components/About"));
 
 
 const AppLayout = () => {
@@ -37,12 +44,14 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: "/about",
-                element: <About />,
+                element: <Suspense fallback={<h1>Loading...</h1>}>
+                    <About />
+                </Suspense>,
                 children: [
                     {
                         // path: "/profile", // localhost:1234/profile
                         path: "profile", // parentPath/{path}
-                        element: <Profile/>,
+                        element: <Profile />,
                     }
                 ],
             },
@@ -53,6 +62,12 @@ const appRouter = createBrowserRouter([
             {
                 path: "/restaurant/:id",
                 element: <RestaurantPage />,
+            },
+            {
+                path: "/instamart",
+                element: <Suspense fallback={<Shimmer />}>
+                    <Instamart />
+                </Suspense>,
             },
         ],
     },
