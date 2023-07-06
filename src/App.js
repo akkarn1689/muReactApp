@@ -1,7 +1,9 @@
 import bodyParser from "body-parser";
-import React, { Component, lazy, Suspense } from "react";
+import React, { Component, lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+// import {crea}
+
 
 // components
 import Header from "./components/Header";
@@ -13,6 +15,7 @@ import RestaurantPage from "./components/RestaurantPage";
 import Error from "./components/Error";
 import Profile from "./components/Profile";
 import Shimmer from "./components/Shimmer";
+import UserContext from "./utils/UserContext";
 // import Instamart from "./components/Instamart";
 
 
@@ -22,13 +25,24 @@ const About = lazy(() => import("./components/About"));
 
 
 const AppLayout = () => {
+    const [user,setUser] = useState({
+        // this user gets the dynamic value, according to 'useEffect' when used.
+        name: "Ashish Karn",
+        email: "baadmebataunga@gmail.com",
+    })
     return (
-        <>
+        <UserContext.Provider
+            value={{
+                user:user,
+                setUser:setUser,
+            }}
+        >
             <Header />
             {/* {Outlet} */}
             <Outlet />
             <Footer />
-        </>
+        </UserContext.Provider>
+        // Everything has been put inside <UserContext.Provider></UserContext.Provider> so that we can use the updated value of context everywhere
     );
 }
 

@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 
 import ProfileClass from "./ProfileClass";
 import Profile from "./Profile";
+import UserContext from "../utils/UserContext";
 
 
 class About extends React.Component {
@@ -21,7 +22,15 @@ class About extends React.Component {
         return (
             <>
                 <div>
-                    <h1>About Us Page</h1>
+                    <h4>About Us Page</h4>
+
+                    <UserContext.Consumer>
+                        {({user})=>(
+                            <h4 className="font-bold text-xl p-10">
+                                {user.name} - {user.email}
+                            </h4>
+                        )}
+                    </UserContext.Consumer>
                     <p>
                         Learning React-routing...
                     </p>

@@ -29,10 +29,10 @@
   width: 100%;
 }
 
-.restaurant-list {
+/* .restaurant-list {
   display: flex;
   flex-wrap: wrap;
-}
+} */
 
 .shimmer-card {
   width: 200px;

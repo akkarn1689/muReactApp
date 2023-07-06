@@ -3,17 +3,17 @@ import { IMG_CDN_URL } from '../constants';
 
 const RestaurantInfoComponent = (restaurant) => {
     return (
-        <div>
+        <div className="flex py-8 mx-24">
             <img
-                className="restaurant-image"
+                className="restaurant-image w-3/12 py-8 mx-24"
                 src={IMG_CDN_URL + restaurant?.cloudinaryImageId}
                 alt={restaurant?.name}
             />
-            <div className=" ">
-                <h2 className="">
+            <div className="flex justify-between py-10">
+                <h2 className="px-2 font-bold text-3xl">
                     {restaurant?.name}
                 </h2>
-                <p className="">
+                <p className="py-10">
                     {restaurant?.cuisines.join(", ")}
                 </p>
                 <div className="">
