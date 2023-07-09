@@ -60,13 +60,13 @@ const RestaurantPage = () => {
             <div className="restaurant-info">
                 <RestaurantInfoComponent {...restaurantInfo} />
             </div>
-            <div className="restaurant-menu">
-                <h1>Menu</h1>
+            <div className="restaurant-menu w-3/5 bg-slate-200 my-5 mx-auto items-center rounded-lg">
+                <h1 className="text-4xl text-center">Menu</h1>
                 {
                     (restaurantMenu?.length === 0) ? <h1>No item on menu</h1> :
                     restaurantMenu?.map((item,index)=>{
                         return (
-                            <div key={index}>
+                            <div key={index} className="w-4.5/5 bg-white my-5 mx-auto items-center rounded-lg">
                                 {console.log(item)}
                                 
                                 {item.categories ? (

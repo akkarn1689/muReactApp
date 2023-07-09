@@ -2,6 +2,7 @@ import bodyParser from "body-parser";
 import React, { Component, lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { Provider } from "react-redux";
 // import {crea}
 
 
@@ -16,6 +17,8 @@ import Error from "./components/Error";
 import Profile from "./components/Profile";
 import Shimmer from "./components/Shimmer";
 import UserContext from "./utils/UserContext";
+import store from "./utils/store";
+import Cart from "./components/Cart";
 // import Instamart from "./components/Instamart";
 
 
@@ -25,23 +28,25 @@ const About = lazy(() => import("./components/About"));
 
 
 const AppLayout = () => {
-    const [user,setUser] = useState({
+    const [user, setUser] = useState({
         // this user gets the dynamic value, according to 'useEffect' when used.
         name: "Ashish Karn",
-        email: "baadmebataunga@gmail.com",
+        email: "nahibataunga@gmail.com",
     })
     return (
-        <UserContext.Provider
-            value={{
-                user:user,
-                setUser:setUser,
-            }}
-        >
-            <Header />
-            {/* {Outlet} */}
-            <Outlet />
-            <Footer />
-        </UserContext.Provider>
+        <Provider store={store}>
+            <UserContext.Provider
+                value={{
+                    user: user,
+                    setUser: setUser,
+                }}
+            >
+                <Header />
+                {/* {Outlet} */}
+                <Outlet />
+                <Footer />
+            </UserContext.Provider>
+        </Provider>
         // Everything has been put inside <UserContext.Provider></UserContext.Provider> so that we can use the updated value of context everywhere
     );
 }
@@ -82,6 +87,10 @@ const appRouter = createBrowserRouter([
                 element: <Suspense fallback={<Shimmer />}>
                     <Instamart />
                 </Suspense>,
+            },
+            {
+                path: "/cart",
+                element: <Cart/>,
             },
         ],
     },

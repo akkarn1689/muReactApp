@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import Logo from "../images/logo.png";
 import useOnline from "../utils/useOnline";
 
 
 const Title = () => (
-    <a href="/" className="flex flex-wrap w-9/10">
+    <a href="/">
         <img
             className="h-24 p-2 rounded-lg"
             alt="logo"
@@ -23,8 +24,10 @@ const Header = () => {
 
     const isOnline = useOnline();
 
+    const cartItem = useSelector(store => store.cart.items);
+
     return (
-        <div className="flex justify-between bg-pink-50 shadow-lg">
+        <div className="flex flex-wrap justify-between bg-pink-50 shadow-lg">
             <Title />
             <div className="nav-items">
                 <ul className="flex py-10 ">
@@ -32,7 +35,8 @@ const Header = () => {
                     <li className="px-2"><Link to="/about">About</Link></li>
                     <li className="px-2"><Link to="/contact">Contact</Link></li>
                     <li className="px-2"><Link to="/instamart">Instamart</Link></li>
-                    <li className="px-2">Cart</li>
+
+                    <li className="px-2"><Link to="/cart">Cart- {cartItem.length} items</Link></li>
                 </ul>
 
             </div>
