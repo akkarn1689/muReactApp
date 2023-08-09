@@ -5,7 +5,7 @@ import { IMG_CDN_URL } from "../constants";
 // Restaurant Card
 export const FoodItemCard = ({ name, description, price, imageId }) => {
     return (
-        <div className="card flex flex-wrap card w-64 p-3 m-3 h-80 shadow-lg bg-pink-50 rounded-lg">
+        <div className="card flex flex-wrap card w-64 p-3 m-3 shadow-lg bg-pink-50 rounded-3xl">
             <img
                 src={
                     IMG_CDN_URL + imageId

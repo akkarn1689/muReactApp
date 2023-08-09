@@ -28,12 +28,24 @@ const Body = () => {
     }, []);
 
     async function getRestaurant() {
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.8041502&lng=83.34821459999999&page_type=DESKTOP_WEB_LISTING");
+        // const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.8041502&lng=83.34821459999999&page_type=DESKTOP_WEB_LISTING");
+        
+        // new api
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1619602&lng=72.7850744&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        
+        
         const json = await data.json();
         console.log(json);
         // optional chaining
-        setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-        setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+        // setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+        // setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+
+
+        // new API
+        setAllRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+
+        // console.log(allRestaurants);
     }
 
     const isOnline = useOnline();
@@ -41,6 +53,8 @@ const Body = () => {
     if (!isOnline) {
         return <h1>🔴 Offline, please check your internet connection!!!</h1>;
     }
+
+    // console.log(allRestaurants);
 
     // conditional rendering
     // if restaurant is empty => Shimer UI
@@ -50,6 +64,7 @@ const Body = () => {
     if (!allRestaurants) return null;
 
     return (allRestaurants?.length === 0) ? <Shimmer /> : (
+        
         <>
             <div className="search-container flex justify-center w-3/5 p-5 bg-pink-50 my-5 mx-auto items-center rounded-lg">
                 <input
@@ -88,17 +103,17 @@ const Body = () => {
                 }></input> */}
 
             </div>
-            <div className="restaurant-list flex flex-wrap justify-center justify-between w-4/5 p-5 bg-black my-5 mx-auto items-center rounded-lg">
+            <div className="restaurant-list flex flex-wrap justify-center justify-between w-4/5 p-5 bg-pink-50 my-5 mx-auto items-center rounded-lg">
                 {/* if search query is not found/ found */}
                 {
                     (filteredRestaurants?.length === 0) ? <h1>No Restaurant match your Filter</h1> :
                         filteredRestaurants.map((restaurant) => {
                             return (
                                 <Link
-                                    to={"/restaurant/" + restaurant.data.id}
-                                    key={restaurant.data.id}
+                                    to={"/restaurant/" + restaurant.info.id}
+                                    key={restaurant.info.id}
                                 >
-                                    <RestaurantCard {...restaurant.data} />
+                                    <RestaurantCard {...restaurant.info} />
                                 </Link>
                             )
                         })

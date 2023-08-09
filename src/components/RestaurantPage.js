@@ -27,6 +27,7 @@ const RestaurantPage = () => {
     async function getRestaurantInfo() {
         const response = await fetch(FETCH_INFO_MENU_URL + id);
         const res_data = await response.json();
+        console.log(res_data);
         const menuItemList = res_data?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
         const itemCategory = "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory";
         const nestedItemCategory = "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory";
@@ -44,7 +45,8 @@ const RestaurantPage = () => {
         setRestaurantInfo(res_data?.data?.cards[0]?.card?.card?.info);
         setRestaurantMenu(menu?.filter(value => value !== undefined));
 
-        setRestaurant([ restaurantInfo, restaurantMenu ]);
+        const data = Object.assign({restaurantInfo},{restaurantMenu});
+        setRestaurant(data);
 
         console.log(restaurant);
         // console.log(restaurantInfo);
@@ -61,13 +63,13 @@ const RestaurantPage = () => {
                 <RestaurantInfoComponent {...restaurantInfo} />
             </div>
             <div className="restaurant-menu w-3/5 bg-slate-200 my-5 mx-auto items-center rounded-lg">
-                <h1 className="text-4xl text-center">Menu</h1>
+                <h1 className="text-4xl text-center text-black text-bold">Menu</h1>
                 {
-                    (restaurantMenu?.length === 0) ? <h1>No item on menu</h1> :
+                    (restaurantMenu?.length === 0) ? <Shimmer /> :
                     restaurantMenu?.map((item,index)=>{
                         return (
                             <div key={index} className="w-4.5/5 bg-white my-5 mx-auto items-center rounded-lg">
-                                {console.log(item)}
+                                {/* {console.log(item)} */}
                                 
                                 {item.categories ? (
                                     <RestaurantNestedItemCategory nestedList={item}/>

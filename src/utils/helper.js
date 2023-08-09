@@ -1,6 +1,15 @@
+// export function filterData(searchText, allRestaurants) {
+//     const filterData = allRestaurants?.filter((restaurant) =>
+//         restaurant?.data?.name?.toLowerCase().includes(searchText.toLowerCase())
+//     );
+
+//     return filterData;
+// }
+
+
 export function filterData(searchText, allRestaurants) {
-    const filterData = allRestaurants.filter((restaurant) =>
-        restaurant?.data?.name?.toLowerCase().includes(searchText.toLowerCase())
+    const filterData = allRestaurants?.filter((restaurant) =>
+        restaurant?.info?.name?.toLowerCase().includes(searchText.toLowerCase())
     );
 
     return filterData;

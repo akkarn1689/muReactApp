@@ -19,6 +19,8 @@ import Shimmer from "./components/Shimmer";
 import UserContext from "./utils/UserContext";
 import store from "./utils/store";
 import Cart from "./components/Cart";
+import Login from "./components/Login";
+import SignUp from "./components/Signup";
 // import Instamart from "./components/Instamart";
 
 
@@ -91,6 +93,14 @@ const appRouter = createBrowserRouter([
             {
                 path: "/cart",
                 element: <Cart/>,
+            },
+            {
+                path: "/login",
+                element: <Login />,
+            },
+            {
+                path: "/signup",
+                element: <SignUp />,
             },
         ],
     },

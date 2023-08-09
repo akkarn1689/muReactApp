@@ -25,6 +25,7 @@ const Header = () => {
     const isOnline = useOnline();
 
     const cartItem = useSelector(store => store.cart.items);
+    const totalItemsCount = useSelector(store => store.cart.totalItemsCount);
 
     return (
         <div className="flex flex-wrap justify-between bg-pink-50 shadow-lg">
@@ -36,13 +37,13 @@ const Header = () => {
                     <li className="px-2"><Link to="/contact">Contact</Link></li>
                     <li className="px-2"><Link to="/instamart">Instamart</Link></li>
 
-                    <li className="px-2"><Link to="/cart">Cart- {cartItem.length} items</Link></li>
+                    <li className="px-2"><Link to="/cart">Cart- {totalItemsCount} items</Link></li>
                 </ul>
 
             </div>
             <h1>{isOnline? '☑️':'🔴'}</h1>
             {
-                isLoggedIn ? <button onClick={() => setIsLoggedIn(false)}>Logout</button> : <button onClick={() => setIsLoggedIn(true)}>Login</button>
+                isLoggedIn ? <button onClick={() => setIsLoggedIn()}>Logout</button> : <button onClick={() => setIsLoggedIn()}><Link to="/login">Login</Link></button>
             }
         </div>
     );
