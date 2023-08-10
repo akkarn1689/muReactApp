@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useUserAuth } from '../context/UserAuthContext';
 
 const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const { signUp } = useUserAuth();
+  const navigate = useNavigate();
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -18,9 +22,16 @@ const SignUp = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     // Here you can add your sign-up logic, such as making an API call to create a new user
+    try {
+      await signUp(email, password);
+      navigate("/login")
+    } catch (err) {
+      setError(err.message);
+    }
     console.log('Name:', name);
     console.log('Email:', email);
     console.log('Password:', password);
@@ -33,6 +44,7 @@ const SignUp = () => {
   return (
     <div>
       <h2>Sign Up</h2>
+      {error && <Alert variant="danger">{error}</Alert>}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Name:</label>

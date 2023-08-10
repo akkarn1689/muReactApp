@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import Logo from "../images/logo.png";
 import useOnline from "../utils/useOnline";
+import { useUserAuth } from "../context/UserAuthContext";
 
 
 const Title = () => (
@@ -20,12 +21,35 @@ const Title = () => (
 
 // Header Compoonent 
 const Header = () => {
+    let {user, logOut} =useUserAuth();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
 
     const isOnline = useOnline();
 
     const cartItem = useSelector(store => store.cart.items);
     const totalItemsCount = useSelector(store => store.cart.totalItemsCount);
+    
+    useEffect(() => {
+        // API call
+        if(!user){
+            setIsLoggedIn(false);
+        }
+        else{
+            setIsLoggedIn(true);
+        }
+        // Do error handling
+    }, [user]);
+
+    const handleLogOut = async () => {
+        try{
+            await logOut();
+            navigate('\login')
+        }catch(err){
+            console.log(err);
+        }
+    }
+    
 
     return (
         <div className="flex flex-wrap justify-between bg-pink-50 shadow-lg">
@@ -42,9 +66,11 @@ const Header = () => {
 
             </div>
             <h1>{isOnline? '☑️':'🔴'}</h1>
+            
             {
-                isLoggedIn ? <button onClick={() => setIsLoggedIn()}>Logout</button> : <button onClick={() => setIsLoggedIn()}><Link to="/login">Login</Link></button>
+                !isLoggedIn && user ? <button onClick={handleLogOut}>Logout</button> : <button onClick={() => setIsLoggedIn()}><Link to="/login">Login</Link></button>
             }
+            
         </div>
     );
 }

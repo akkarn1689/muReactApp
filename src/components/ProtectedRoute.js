@@ -1,9 +1,15 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
+import { useUserAuth } from '../context/UserAuthContext';
 
-const ProtectedRoute = ()=>{
-    return (
-        <div>Protected Route</div>
-    );
+
+const ProtectedRoute = ({children})=>{
+    let {user} = useUserAuth();
+
+    if(!user){
+        return <Navigate to='/temporary' />;
+    }
+    return children;
 };
 
 export default ProtectedRoute;

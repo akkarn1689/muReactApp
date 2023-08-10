@@ -1,14 +1,30 @@
-import React,{ useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import { useUserAuth } from "../context/UserAuthContext";
 
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const { logIn } = useUserAuth();
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(email, password);
+        setError("");
+        // Here you can add your sign-up logic, such as making an API call to create a new user
+        try {
+            await logIn(email, password);
+            navigate("/")
+        } catch (err) {
+            setError(err.message);
+        }
+
+        // console.log('Email:', email);
+        // console.log('Password:', password);
+        // Reset the form fields
 
         setEmail('');
         setPassword('');

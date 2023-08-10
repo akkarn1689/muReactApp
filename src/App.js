@@ -1,11 +1,11 @@
-import bodyParser from "body-parser";
+// import bodyParser from "body-parser";
 import React, { Component, lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Provider } from "react-redux";
 // import {crea}
 
-
+import { UserAuthContextProvider } from "./context/UserAuthContext";
 // components
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -21,6 +21,10 @@ import store from "./utils/store";
 import Cart from "./components/Cart";
 import Login from "./components/Login";
 import SignUp from "./components/Signup";
+
+
+import TemporaryPage from "./components/TempPage";
+
 // import Instamart from "./components/Instamart";
 
 
@@ -30,26 +34,21 @@ const About = lazy(() => import("./components/About"));
 
 
 const AppLayout = () => {
-    const [user, setUser] = useState({
-        // this user gets the dynamic value, according to 'useEffect' when used.
-        name: "Ashish Karn",
-        email: "nahibataunga@gmail.com",
-    })
+    // const [user, setUser] = useState({
+    //     // this user gets the dynamic value, according to 'useEffect' when used.
+    //     name: "Ashish Karn",
+    //     email: "nahibataunga@gmail.com",
+    // })
     return (
-        <Provider store={store}>
-            <UserContext.Provider
-                value={{
-                    user: user,
-                    setUser: setUser,
-                }}
-            >
+        <UserAuthContextProvider>
+            <Provider store={store}>
                 <Header />
                 {/* {Outlet} */}
                 <Outlet />
                 <Footer />
-            </UserContext.Provider>
-        </Provider>
-        // Everything has been put inside <UserContext.Provider></UserContext.Provider> so that we can use the updated value of context everywhere
+            </Provider>
+        </UserAuthContextProvider>
+        // {/* // Everything has been put inside <UserContext.Provider></UserContext.Provider> so that we can use the updated value of context everywhere */ }
     );
 }
 
@@ -92,7 +91,7 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: "/cart",
-                element: <Cart/>,
+                element: <Cart />,
             },
             {
                 path: "/login",
@@ -102,6 +101,10 @@ const appRouter = createBrowserRouter([
                 path: "/signup",
                 element: <SignUp />,
             },
+            {
+                path: "/temporary",
+                element: <TemporaryPage />,
+            },
         ],
     },
 ])
@@ -110,3 +113,18 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 // passing a react element inside the root
 root.render(<RouterProvider router={appRouter} />);  // HeaderComponent() will also work
+
+
+
+
+// {/* <UserContext.Provider
+//                 value={{
+//                     user: user,
+//                     setUser: setUser,
+//                 }}
+//             >
+//                 <Header />
+//                 {/* {Outlet} */}
+//                 <Outlet />
+//                 <Footer />
+//             </UserContext.Provider> */}
