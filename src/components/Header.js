@@ -14,7 +14,7 @@ const Title = () => (
             alt="logo"
             src={Logo}
         />
-        <figcaption>SpeedyDine</figcaption>
+        <figcaption>InstaBites</figcaption>
     </a>
 );
 

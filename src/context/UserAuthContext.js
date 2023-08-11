@@ -5,7 +5,9 @@ import {
     signOut,
     onAuthStateChanged,
     GoogleAuthProvider,
-    signInWithPopup
+    signInWithPopup,
+
+    // forgot password functionality: Password reset
 
 } from "firebase/auth";
 import { auth } from "./firebase";
