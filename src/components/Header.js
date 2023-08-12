@@ -51,8 +51,8 @@ const Header = () => {
         }
     }
 
-
-    return !user? <HeaderShimmer />: (
+    // !user? <HeaderShimmer />: 
+    return (
         <div className="flex justify-center">
             <div className="flex items-center flex-wrap w-11/12 justify-between bg-pink-50 shadow-lg">
                 <Title />
