@@ -27,6 +27,10 @@ const Body = () => {
         // Do error handling
     }, []);
 
+    function findRestaurantListByPropertyId(dataArray){
+        return dataArray?.find(obj => obj?.card?.card?.hasOwnProperty("id") && obj?.card?.card?.id==="restaurant_grid_listing")
+    }
+
     async function getRestaurant() {
         // const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.8041502&lng=83.34821459999999&page_type=DESKTOP_WEB_LISTING");
         
@@ -35,15 +39,27 @@ const Body = () => {
         
         
         const json = await data.json();
-        console.log(json);
+        // console.log(json);
         // optional chaining
         // setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
         // setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
 
 
         // new API
-        setAllRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilteredRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        const dataArray =json?.data?.cards;
+
+        // const restaurantListData = ()=>{
+        //     return dataArray?.find(obj => obj?.card?.card?.hasOwnProperty(id) && obj?.card?.card?.id==="restaurant_grid_listing")
+        // }
+
+        const restaurantListData = findRestaurantListByPropertyId(dataArray)
+
+        console.log(restaurantListData);
+        // setAllRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        // setFilteredRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+
+        setAllRestaurants(restaurantListData?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurants(restaurantListData?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 
         // console.log(allRestaurants);
     }
@@ -107,7 +123,7 @@ const Body = () => {
                 {/* if search query is not found/ found */}
                 {
                     (filteredRestaurants?.length === 0) ? <h1>No Restaurant match your Filter</h1> :
-                        filteredRestaurants.map((restaurant) => {
+                        filteredRestaurants?.map((restaurant) => {
                             return (
                                 <Link
                                     to={"/restaurant/" + restaurant.info.id}
