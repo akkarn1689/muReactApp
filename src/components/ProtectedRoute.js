@@ -7,7 +7,7 @@ const ProtectedRoute = ({children})=>{
     let {user} = useUserAuth();
 
     if(!user){
-        return <Navigate to='/temporary' />;
+        return <Navigate to='/home' />;
     }
     return children;
 };

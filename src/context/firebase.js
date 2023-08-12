@@ -1,21 +1,26 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
 import {getAuth} from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAg79CPdG11ZOjfw1qYZRa-nqswJy_Yszs",
-  authDomain: "fir-crud-restapi-ba032.firebaseapp.com",
-  projectId: "fir-crud-restapi-ba032",
-  storageBucket: "fir-crud-restapi-ba032.appspot.com",
-  messagingSenderId: "11521332202",
-  appId: "1:11521332202:web:f012cead3bf3a4194b9893"
+  apiKey: "AIzaSyDgm2AY5MYm6OVMUDy1iD-p7hnWWiHHm1Y",
+  authDomain: "instabites-fb59c.firebaseapp.com",
+  projectId: "instabites-fb59c",
+  storageBucket: "instabites-fb59c.appspot.com",
+  messagingSenderId: "467165884051",
+  appId: "1:467165884051:web:b473797dbf21212246a766"
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const database = getFirestore(app);
 export default app;
-
 // const analytics = getAnalytics(app);

@@ -21,6 +21,7 @@ import store from "./utils/store";
 import Cart from "./components/Cart";
 import Login from "./components/Login";
 import SignUp from "./components/Signup";
+import ProfileInfoFormComponent from "./components/ProfileInfo";
 
 
 import TemporaryPage from "./components/TempPage";
@@ -102,8 +103,8 @@ const appRouter = createBrowserRouter([
                 element: <SignUp />,
             },
             {
-                path: "/temporary",
-                element: <TemporaryPage />,
+                path: "/profileInfo",
+                element: <ProfileInfoFormComponent />,
             },
         ],
     },

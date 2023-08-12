@@ -28,7 +28,7 @@ const SignUp = () => {
     // Here you can add your sign-up logic, such as making an API call to create a new user
     try {
       await signUp(email, password);
-      navigate("/login")
+      navigate("/profileInfo")
     } catch (err) {
       setError(err.message);
     }
