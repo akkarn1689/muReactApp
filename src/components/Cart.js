@@ -162,7 +162,7 @@ const Cart = () => {
                             )}
 
                             <div className="flex justify-center my-10">
-                                <Link to="/payment">
+                                <Link to="/ordersummary">
                                     <button className="bg-blue-400 rounded-lg text-white px-3 py-1 mt-1 text-sm hover:drop-shadow-lg">
                                         {" "}
                                         PROCEED TO PAYMENT

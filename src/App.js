@@ -44,10 +44,16 @@ const AppLayout = () => {
     return (
         <UserAuthContextProvider>
             <Provider store={store}>
-                <Header />
-                {/* {Outlet} */}
-                <Outlet />
-                <Footer />
+                <div className="flex flex-col min-h-screen">
+                    <Header />
+                    {/* {Outlet} */}
+                    <div className="flex-1">
+                        <Outlet />
+                    </div>
+                    <div className="shrink-0">
+                        <Footer />
+                    </div>
+                </div>
             </Provider>
         </UserAuthContextProvider>
         // {/* // Everything has been put inside <UserContext.Provider></UserContext.Provider> so that we can use the updated value of context everywhere */ }

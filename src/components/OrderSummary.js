@@ -1,10 +1,12 @@
 import React from 'react'
-const PaymentPageComponent = () =>{
+const OrderSummaryPage = () =>{
   return (
     <>
-        
+      <div>
+        Here you will get order summary and payment gateway
+      </div>  
     </>
   )
 }
 
-export default PaymentPageComponent;
+export default OrderSummaryPage;
