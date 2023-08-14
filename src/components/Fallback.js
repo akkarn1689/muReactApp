@@ -12,7 +12,7 @@ const Fallback = () => {
       {!user? (
         <div className="flex flex-col justify-start mx-4 gap-4">
           <div>
-            <h1 className="text-xl mt-2.5 text-title font-bold ">Account</h1>
+            {/* <h1 className="text-xl mt-2 text-title font-bold ">Account</h1> */}
             <p>
               To place your order now, log in to your existing account or sign
               up.
@@ -20,24 +20,24 @@ const Fallback = () => {
           </div>
           <div className="flex flex-col justify-center">
             <div className="flex flex-col justify-center items-center gap-5">
-              <h1 className="text-base mt-2.5 text-bio font-bold ">
+              <h1 className="text-base mt-2 font-bold ">
                 Have an account already ?{" "}
               </h1>
               <Link to="/login">
-                <button className="bg-white rounded border border-yellow text-sm text-blue-dark">
+                <button className="p-1 m-4 bg-black text-white rounded-lg">
                   LOG IN
                 </button>
               </Link>
             </div>
-            <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray before:mt-0.5 after:flex-1 after:border-t after:border-gray after:mt-0.5">
-              <p className="text-center text-bio font-semibold mx-4 mb-0">OR</p>
+            <div className="flex items-center my-4">
+              <p className="text-center font-semibold mx-4 mb-0">OR</p>
             </div>
             <div className="flex flex-col justify-center items-center gap-5">
-              <h1 className="text-base mt-2.5 text-bio font-bold ">
-                New to Instafood ?{" "}
+              <h1 className="text-base mt-2 font-bold ">
+                New User ?{" "}
               </h1>
               <Link to="/signup">
-                <button className="bg-yellow rounded text-sm text-blue-dark">
+                <button className="p-1 m-4 bg-black text-white rounded-lg">
                   SIGN UP
                 </button>
               </Link>
