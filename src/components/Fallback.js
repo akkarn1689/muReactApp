@@ -12,7 +12,6 @@ const Fallback = () => {
       {!user? (
         <div className="flex flex-col justify-start mx-4 gap-4">
           <div>
-            {/* <h1 className="text-xl mt-2 text-title font-bold ">Account</h1> */}
             <p>
               To place your order now, log in to your existing account or sign
               up.
@@ -20,24 +19,24 @@ const Fallback = () => {
           </div>
           <div className="flex flex-col justify-center">
             <div className="flex flex-col justify-center items-center gap-5">
-              <h1 className="text-base mt-2 font-bold ">
+              <h1 className="mt-1">
                 Have an account already ?{" "}
               </h1>
               <Link to="/login">
-                <button className="p-1 m-4 bg-black text-white rounded-lg">
+                <button className="p-1 m-1 bg-black text-white rounded-lg">
                   LOG IN
                 </button>
               </Link>
             </div>
-            <div className="flex items-center my-4">
+            <div className="flex items-center my-1">
               <p className="text-center font-semibold mx-4 mb-0">OR</p>
             </div>
             <div className="flex flex-col justify-center items-center gap-5">
-              <h1 className="text-base mt-2 font-bold ">
+              <h1 className="text-base mt-1">
                 New User ?{" "}
               </h1>
               <Link to="/signup">
-                <button className="p-1 m-4 bg-black text-white rounded-lg">
+                <button className="p-1 m-1 bg-black text-white rounded-lg">
                   SIGN UP
                 </button>
               </Link>
