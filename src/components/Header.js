@@ -45,7 +45,7 @@ const Header = () => {
     const handleLogOut = async () => {
         try {
             await logOut();
-            navigate('\login')
+            navigate('/login')
         } catch (err) {
             console.log(err);
         }
@@ -70,7 +70,7 @@ const Header = () => {
                 <h1>{isOnline ? '☑️' : '🔴'}</h1>
 
                 {
-                    !isLoggedIn && user ? <button onClick={handleLogOut}>Logout</button> : <button onClick={() => setIsLoggedIn()}><Link to="/login">Login</Link></button>
+                    !isLoggedIn && user ? <button className="p-1 m-4 bg-black text-red-500 rounded-lg" onClick={handleLogOut}>Logout</button> : <button className="p-1 m-4 bg-black text-white rounded-lg" onClick={() => setIsLoggedIn()}><Link to="/login">Login</Link></button>
                 }
 
             </div>

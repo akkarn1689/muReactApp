@@ -32,13 +32,13 @@ const SignUp = () => {
     } catch (err) {
       setError(err.message);
     }
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Password:', password);
+    // console.log('Name:', name);
+    // console.log('Email:', email);
+    // console.log('Password:', password);
     // Reset the form fields
-    setName('');
-    setEmail('');
-    setPassword('');
+    // setName('');
+    // setEmail('');
+    // setPassword('');
   };
 
   return (

@@ -4,6 +4,8 @@ import GoogleButton from "react-google-button";
 
 import { useUserAuth } from "../context/UserAuthContext";
 
+import { getAuth } from "firebase/auth";
+
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -11,6 +13,7 @@ const Login = () => {
     const [error, setError] = useState('');
     const { user, logIn, googleSignIn } = useUserAuth();
     const navigate = useNavigate();
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,9 +21,10 @@ const Login = () => {
         // Here you can add your sign-up logic, such as making an API call to create a new user
         try {
             await logIn(email, password);
+            
+            // console.log(user);
             navigate("/");
-            console.log(user);
-            console.log(user.email);
+            // console.log(user.email);
         } catch (err) {
             setError(err.message);
         }

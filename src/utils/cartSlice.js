@@ -5,26 +5,31 @@ const cartSlice = createSlice({
     initialState: {
         items: {},
         totalItemsCount: 0,
+        deliveryAddress: {},
+
     },
     reducers: {
         addItem: (state, action) => {
             const item = state.items[action.payload.id];
-            const quantity = 
-                item && item.hasOwnProperty("quantity") 
+            const quantity =
+                item && item.hasOwnProperty("quantity")
                     ? state.items[action.payload.id]?.quantity + 1 : 1;
-                state.items[action.payload.id] = {...action.payload,quantity};
-                state.totalItemsCount = state.totalItemsCount + 1;
+            state.items[action.payload.id] = { ...action.payload, quantity };
+            state.totalItemsCount = state.totalItemsCount + 1;
         },
         removeItem: (state, action) => {
             const item = state.items[action.payload];
-            if(!item) return;
-            if(item.quantity > 1){
+            if (!item) return;
+            if (item.quantity > 1) {
                 item.quantity -= 1;
                 state.totalItemsCount--;
-            }else{
+            } else {
                 state.totalItemsCount--;
                 delete state.items[action.payload];
             }
+        },
+        updateDeliveryAddress: (state, action) => {
+            state.deliveryAddress = action.payload;
         },
         clearCart: (state) => {
             state.items = {};
@@ -35,7 +40,12 @@ const cartSlice = createSlice({
 });
 
 
-export const { addItem, removeItem, clearCart } = cartSlice.actions;
+export const { 
+    addItem, 
+    removeItem, 
+    clearCart, 
+    updateDeliveryAddress,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
 

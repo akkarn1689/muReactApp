@@ -25,6 +25,7 @@ import ProfileInfoFormComponent from "./components/ProfileInfo";
 
 
 import TemporaryPage from "./components/TempPage";
+import OrderSummaryPage from "./components/OrderSummary";
 
 // import Instamart from "./components/Instamart";
 
@@ -105,6 +106,10 @@ const appRouter = createBrowserRouter([
             {
                 path: "/profileInfo",
                 element: <ProfileInfoFormComponent />,
+            },
+            {
+                path: "/ordersummary",
+                element: <OrderSummaryPage />,
             },
         ],
     },
