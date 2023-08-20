@@ -10,6 +10,7 @@
 
 node_modules/
 dist/
+coverage/
 
 # compiled Java class files
 *.class

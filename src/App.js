@@ -22,7 +22,7 @@ import Cart from "./components/Cart";
 import Login from "./components/Login";
 import SignUp from "./components/Signup";
 import ProfileInfoFormComponent from "./components/ProfileInfo";
-
+import {AI} from './components/AI'
 
 import TemporaryPage from "./components/TempPage";
 import OrderSummaryPage from "./components/OrderSummary";
@@ -117,6 +117,10 @@ const appRouter = createBrowserRouter([
                 path: "/ordersummary",
                 element: <OrderSummaryPage />,
             },
+            {
+                path:'/ai',
+                element:<AI/>
+            }
         ],
     },
 ])
