@@ -128,7 +128,7 @@ const Cart = () => {
                                                 </div>
 
                                                 <p className="px-1 font-thin text-sm">
-                                                    {"₹ " + (item.price / 100) * item.quantity}
+                                                    {item.price?"₹ " + (item.price / 100) * item.quantity: "₹ " + 0}
                                                 </p>
                                             </div>
                                         </div>
