@@ -22,7 +22,6 @@ import Cart from "./components/Cart";
 import Login from "./components/Login";
 import SignUp from "./components/Signup";
 import ProfileInfoFormComponent from "./components/ProfileInfo";
-import {AI} from './components/AI'
 
 import TemporaryPage from "./components/TempPage";
 import OrderSummaryPage from "./components/OrderSummary";
@@ -36,11 +35,6 @@ const About = lazy(() => import("./components/About"));
 
 
 const AppLayout = () => {
-    // const [user, setUser] = useState({
-    //     // this user gets the dynamic value, according to 'useEffect' when used.
-    //     name: "Ashish Karn",
-    //     email: "nahibataunga@gmail.com",
-    // })
     return (
         <UserAuthContextProvider>
             <Provider store={store}>
@@ -117,10 +111,6 @@ const appRouter = createBrowserRouter([
                 path: "/ordersummary",
                 element: <OrderSummaryPage />,
             },
-            {
-                path:'/ai',
-                element:<AI/>
-            }
         ],
     },
 ])

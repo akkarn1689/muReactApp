@@ -8,7 +8,7 @@ const Fallback = () => {
   const { user } = useUserAuth();
 
   return (
-    <div className="grid grid-row-2 bg-white drop-shadow-md p-3">
+    <div className="grid grid-row-2 bg-white  p-3">
       {!user? (
         <div className="flex flex-col justify-start mx-4 gap-4">
           <div>

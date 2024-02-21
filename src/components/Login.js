@@ -13,27 +13,35 @@ const Login = () => {
     const [error, setError] = useState('');
     const { user, logIn, googleSignIn } = useUserAuth();
     const navigate = useNavigate();
+
+    const [loggedIn, setLoggedIn] = useState(false);
     
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     setError("");
+    //     // Here you can add your sign-up logic, such as making an API call to create a new user
+    //     try {
+    //         await logIn(email, password);
+            
+    //         // console.log(user);
+    //         navigate("/");
+    //         // console.log(user.email);
+    //     } catch (err) {
+    //         setError(err.message);
+    //     }
+    //     // console.log('Email:', email);
+    //     // console.log('Password:', password);
+    //     // Reset the form fields
+    //     // setEmail('');
+    //     // setPassword('');
+    // }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError("");
-        // Here you can add your sign-up logic, such as making an API call to create a new user
-        try {
-            await logIn(email, password);
-            
-            // console.log(user);
-            navigate("/");
-            // console.log(user.email);
-        } catch (err) {
-            setError(err.message);
-        }
-        // console.log('Email:', email);
-        // console.log('Password:', password);
-        // Reset the form fields
-        // setEmail('');
-        // setPassword('');
+        
     }
+
 
     const handleGoogleSignIn = async (e) => {
         e.preventDefault();
@@ -80,6 +88,7 @@ const Login = () => {
                         required
                     />
                 </div>
+                
                 <button type="submit">Login</button>
                 <hr />
                 <GoogleButton className="bg-blue-400" onClick={handleGoogleSignIn} />

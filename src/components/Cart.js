@@ -120,7 +120,7 @@ const Cart = () => {
                                     console.log(item);
                                     {/* return <FoodItemCard key={item.id} {...item} /> */ }
                                     return (
-                                        <div className="inline-block my-2 w-4/5border-solid shadow-lg">
+                                        <div className="inline-block my-2 w-4/5 border border-solid shadow-sm">
                                             <div className="flex items-center mt-2">
                                                 <p className="px-1 w-2/5 text-sm">{item.name}</p>
                                                 <div className="px-1">

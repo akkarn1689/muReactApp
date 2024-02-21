@@ -43,12 +43,23 @@ const Header = () => {
     }, [user]);
 
     const handleLogOut = async () => {
-        try {
-            await logOut();
-            navigate('/login')
-        } catch (err) {
-            console.log(err);
-        }
+        // try {
+        //     await logOut();
+        //     navigate('/login')
+        // } catch (err) {
+        //     console.log(err);
+        // }
+        setIsLoggedIn(false);
+    }
+
+    const handleLogIn = async () => {
+        // try {
+        //     await logOut();
+        //     navigate('/login')
+        // } catch (err) {
+        //     console.log(err);
+        // }
+        setIsLoggedIn(true);
     }
 
     // !user? <HeaderShimmer />: 
@@ -62,7 +73,6 @@ const Header = () => {
                         <li className="px-2"><Link to="/about">About</Link></li>
                         <li className="px-2"><Link to="/contact">Contact</Link></li>
                         <li className="px-2"><Link to="/instamart">Instamart</Link></li>
-                        <li className="px-2"><Link to="/ai">AI</Link></li>
                         <li className="px-2"><Link to="/cart">Cart- {totalItemsCount} items</Link></li>
                     </ul>
 
@@ -70,7 +80,7 @@ const Header = () => {
                 <h1>{isOnline ? '☑️' : '🔴'}</h1>
 
                 {
-                    !isLoggedIn && user ? <button className="p-1 m-4 bg-black text-red-500 rounded-lg" onClick={handleLogOut}>Logout</button> : <button className="p-1 m-4 bg-black text-white rounded-lg" onClick={() => setIsLoggedIn()}><Link to="/login">Login</Link></button>
+                    !isLoggedIn && user ? <button className="p-1 m-4 bg-black text-red-500 rounded-lg" onClick={handleLogOut}>Logout</button> : <button className="p-1 m-4 bg-black text-white rounded-lg" onClick={handleLogIn}>LogIn</button>
                 }
 
             </div>

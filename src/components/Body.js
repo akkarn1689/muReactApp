@@ -27,26 +27,35 @@ const Body = () => {
         // Do error handling
     }, []);
 
-    function findRestaurantListByPropertyId(dataArray){
-        return dataArray?.find(obj => obj?.card?.card?.hasOwnProperty("id") && obj?.card?.card?.id==="restaurant_grid_listing")
+    function findRestaurantListByPropertyId(dataArray) {
+        return dataArray?.find(obj => obj?.card?.card?.hasOwnProperty("id") && obj?.card?.card?.id === "restaurant_grid_listing")
     }
 
     async function getRestaurant() {
-        // const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.8041502&lng=83.34821459999999&page_type=DESKTOP_WEB_LISTING");
-        
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.8041502&lng=83.34821459999999&page_type=DESKTOP_WEB_LISTING").then(() => {
+            console.log("Data fetched");
+        })
+            .catch(err => console.log(err));;
+
         // new api
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1619602&lng=72.7850744&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-        
-        
-        const json = await data.json();
-        // console.log(json);
+        // const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1619602&lng=72.7850744&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING", {
+        //     method: "GET",
+        // }).then(() => {
+        //     console.log("Data fetched");
+        // })
+        //     .catch(err => console.log(err));
+        if (!data) {
+            console.log("Data not fetched");
+        }
+        const json = await data?.json();
+        console.log(json);
         // optional chaining
         // setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
         // setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
 
 
         // new API
-        const dataArray =json?.data?.cards;
+        const dataArray = json?.data?.cards;
 
         // const restaurantListData = ()=>{
         //     return dataArray?.find(obj => obj?.card?.card?.hasOwnProperty(id) && obj?.card?.card?.id==="restaurant_grid_listing")
@@ -80,7 +89,7 @@ const Body = () => {
     if (!allRestaurants) return null;
 
     return (allRestaurants?.length === 0) ? <Shimmer /> : (
-        
+
         <>
             <div className="search-container flex justify-center w-3/5 p-5 bg-pink-50 my-5 mx-auto items-center rounded-lg">
                 <input
